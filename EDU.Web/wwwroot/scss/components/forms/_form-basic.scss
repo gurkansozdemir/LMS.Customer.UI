@@ -1,0 +1,70 @@
+// Basic Input
+.form-control{
+    background: $white;
+    border: 1px solid $border;
+    color: $dark;
+    &:hover,&:focus,&.active{
+        box-shadow: none;
+        background: $white;
+        color: $dark;
+    }
+}
+.input-rounded {
+    border-radius: 100px;
+}
+
+// Input Group
+.input-group-text{
+    background: #656c73;
+    color: $white;
+    border: 1px solid transparent;
+    min-width: 50px;
+    display: flex;
+    justify-content: center;
+    i{
+        color: $white;
+        font-size: 22px;
+    }
+}
+.input-group-prepend .btn,
+.input-group-append .btn {
+    z-index: 0;
+}
+
+.custom-select{
+    background: none;
+    border-color: $border;
+    color: $dark;
+    &:focus{
+        box-shadow: none;
+        border-color: $primary;
+        color: $primary;
+    }
+}
+
+
+.custom-file-label{
+    &:after{
+        background: #656C73;
+        border: 1px solid $border;
+        color: $white;
+    }
+}
+
+.custom_file_input {
+    .custom-file-label::after {
+        height: 100%;
+    }
+}
+
+
+.form-control:disabled,
+ .form-control[readonly] {
+    background: $white;
+    opacity: 1;
+}
+
+.custom-file-label{
+    background: $white;
+    border-color: $border;
+}

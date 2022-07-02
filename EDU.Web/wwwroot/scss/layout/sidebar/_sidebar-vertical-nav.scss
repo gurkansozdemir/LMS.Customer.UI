@@ -1,0 +1,29 @@
+[data-sidebar-position="fixed"][data-layout="vertical"] {
+    .nav-header {
+        position: fixed;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .dlabnav {
+        position: fixed;
+        .dlabnav-scroll {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+    }
+
+    .menu-toggle {
+        .dlabnav {
+            position: absolute;
+        }
+    }
+}
+
+[data-header-position="fixed"][data-sidebar-position="fixed"][data-sidebar-style="overlay"][data-layout="vertical"][data-container="boxed"] {
+    .dlabnav {
+        position: absolute;
+    }
+}
+
+
