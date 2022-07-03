@@ -2,7 +2,7 @@
     var content = "";
     $.ajax({
         type: "GET",
-        url: "https://localhost:7263/api/user",
+        url: baseApiUrl + "user",
         dataType: "json",
         success: function (response) {
             debugger

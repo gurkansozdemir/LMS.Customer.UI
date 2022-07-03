@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EDU.Web.Models.UserViewModels;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace EDU.Web.Controllers
 {
@@ -6,7 +8,8 @@ namespace EDU.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var response = JsonSerializer.Deserialize<UserVM>(HttpContext.Session.GetString("CurrentUser"));
+            return View(response);
         }
     }
 }
