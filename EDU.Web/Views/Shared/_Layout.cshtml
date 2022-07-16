@@ -25,10 +25,12 @@
 
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="~/vendor/highlightjs/styles/darcula.css">
+    <link href="~/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="~/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="~/css/style.css" rel="stylesheet">
     <script>
-        var baseApiUrl = "https://lms-customer-api.azurewebsites.net/api/";
+        // var baseApiUrl = "https://lms-customer-api.azurewebsites.net/api/";
+        var baseApiUrl = "https://localhost:7263/api/";
     </script>
 
 </head>
@@ -483,14 +485,20 @@
     <script src="~/js/custom.min.js"></script>
     <script src="~/js/dlabnav-init.js"></script>
     <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist~/lib/bootstrap/dist/js/bootstrap.js"></script>
 
     <script src="~/vendor/highlightjs/highlight.pack.min.js"></script>
     <!-- Circle progress -->
 
     <script src="~/js/layout-light.js"></script>
+
     <!-- Svganimation scripts -->
     <script src="~/vendor/svganimation/vivus.min.js"></script>
     <script src="~/vendor/svganimation/svg.animation.js"></script>
+
+    <!-- Datatable -->
+    <script src="~/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/plugins-init/datatables.init.js"></script>
 
     <!-- Only Page Scripts -->
     @RenderSection("endBodyArea",false);
