@@ -27,10 +27,11 @@
     <link href="~/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="~/css/style.css" rel="stylesheet">
     <link href="~/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="~/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 
     <script>
-        var baseApiUrl = "https://lms-customer-api.azurewebsites.net/api/";
-        // var baseApiUrl = "https://localhost:7263/api/";
+        // var baseApiUrl = "https://lms-customer-api.azurewebsites.net/api/";
+         var baseApiUrl = "https://localhost:7263/api/";
     </script>
 
 </head>
@@ -257,6 +258,10 @@
     <!-- Datatable -->
     <script src="~/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/js/plugins-init/datatables.init.js"></script>
+
+    <!-- Sweetalert -->
+    <script src="~/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="~/js/plugins-init/sweetalert.init.js"></script>
 
     <!-- Only Page Scripts -->
     @RenderSection("endBodyArea",false);
