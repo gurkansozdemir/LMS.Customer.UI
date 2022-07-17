@@ -40,6 +40,11 @@ function deleteRow(id) {
     });
 }
 
+function editRow(data) {
+    debugger
+
+}
+
 
 $("#insertUserForm").submit(function () {
     let data = `{
