@@ -16,8 +16,8 @@
             {
                 data: "process",
                 "render": function (data, type, full, meta) {
-                    return `<a href="javascript:void(0);" onclick="editRow(` + full.id + `)" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                            <a href="javascript:void(0);" onclick="deleteRow(` + full.id + `)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>`;
+                    return `<a data-toggle="tooltip" data-placement="top" title="Düzenle" href="javascript:void(0);" onclick="editRow(` + full.id + `)" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                            <a data-toggle="tooltip" data-placement="top" title="Sil" href="javascript:void(0);" onclick="deleteRow(` + full.id + `)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>`;
                 }
             }
         ]

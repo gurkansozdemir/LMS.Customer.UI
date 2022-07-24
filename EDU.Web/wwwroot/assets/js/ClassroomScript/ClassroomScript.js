@@ -10,18 +10,18 @@
             { data: "name" },
             {
                 data: "education",
-                "render": function (a, b, c, d) {
+                "render": function (data, type, full, meta) {
                     debugger
-                    return '<p>' + c.education.name + '</p>';
+                    return '<p>' + full.education.name + '</p>';
                 }
             },
             { data: "createdOn" },
             {
                 data: "process",
                 "render": function (data, type, full, meta) {
-                    return `<a href="javascript:void(0);" onclick="editRow(` + full.id + `)" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                            <a href="javascript:void(0);" onclick="deleteRow(` + full.id + `)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
-                            <a href="javascript:void(0);" onclick="includeStudent(` + full.id + `)" class="btn btn-sm btn-danger"><i class="la la-arrow"></i></a>`;
+                    return `<a data-toggle="tooltip" data-placement="top" title="Düzenle" href="javascript:void(0);" onclick="editRow(` + full.id + `)" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                            <a data-toggle="tooltip" data-placement="top" title="Sil" href="javascript:void(0);" onclick="deleteRow(` + full.id + `)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
+                            <a data-toggle="tooltip" data-placement="top" title="Öğrenci Ata" href="javascript:void(0);" onclick="includeStudent(` + full.id + `)" class="btn btn-sm btn-success"><i class="la la-user"></i></a>`;
                 }
             }
         ]
@@ -36,7 +36,6 @@ function includeStudent(id) {
 }
 
 $("#includeStudentForm").submit(function () {
-    debugger
     event.preventDefault();
     let data = `{
                    "studentId": ` + $("#includeStudentModal #includeStudentForm #studentId").val() + `,
@@ -49,11 +48,9 @@ $("#includeStudentForm").submit(function () {
         dataType: "json",
         data: data,
         success: function () {
-            debugger
             $("#includeStudentModal").modal('toggle');
         },
         error: function (error) {
-            debugger
             swal.fire("Hata!", "Bir sorun ile karşılaşıldı!", error);
         }
     });

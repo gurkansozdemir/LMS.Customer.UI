@@ -35,16 +35,18 @@
                 <div class="modal-body">
                     <div class="form-validation">
                         <div class="row">
-                            <div class="form-group row">
-                                <label class="col-lg-6 col-form-label" for="studentDropDown">
-                                    Öğrenci Seçiniz:
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <div class="col-lg-6">
-                                    <input type="hidden" name="hiddenClassroomId" id="hiddenClassroomId" />
-                                    <select id="studentId" name="studentId">
-                                        <option value="3">Ahmet Gülgeli</option>
-                                    </select>
+                            <div class="col-xl-8">
+                                <div class="form-group row">
+                                    <label class="col-lg-6 col-form-label" for="studentDropDown">
+                                        Öğrenci Seçiniz:
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="hidden" name="hiddenClassroomId" id="hiddenClassroomId" />
+                                        <select id="studentId" name="studentId" required>
+                                            <option value="" selected disabled>Öğrenci Seçiniz..</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
