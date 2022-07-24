@@ -10,8 +10,7 @@
             { data: "name" },
             {
                 data: "education",
-                "render": function (data, type, full, meta) {
-                    debugger
+                "render": function (data, type, full, meta) {                    
                     return '<p>' + full.education.name + '</p>';
                 }
             },
@@ -30,8 +29,10 @@
 
 getAllClassroomDT();
 
+
 function includeStudent(id) {
     $("#includeStudentModal #includeStudentForm #hiddenClassroomId").val(id);
+    fillStudentDropdown();
     $("#includeStudentModal").modal('toggle');
 }
 
@@ -55,3 +56,23 @@ $("#includeStudentForm").submit(function () {
         }
     });
 });
+
+function fillStudentDropdown() {
+    $("#studentId").empty();
+    $.ajax({
+        url: baseApiUrl + 'user',
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            debugger
+            for (var i = 0; i < data.data.length; i++) {
+                $("#studentId").append('<option value="' + data.data[i].id + '">' + data.data[i].firstName + ' ' + data.data[i].lastName + '</option>');
+            }
+        },
+        error: function (error) {
+
+        }
+    })
+
+}

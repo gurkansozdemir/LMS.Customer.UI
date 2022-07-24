@@ -2,7 +2,9 @@
 
 (function($) {
   "use strict"
-  
+ 
+   $("#studentId").select2();
+
   // single select box
   $("#single-select").select2();
 

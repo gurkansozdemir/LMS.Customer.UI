@@ -24,11 +24,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- STYLESHEETS -->
-    <link href="~/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="~/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-
+    @* <link rel="stylesheet" href="~/vendor/select2/css/select2.min.css"> *@
     <script>
         // var baseApiUrl = "https://lms-customer-api.azurewebsites.net/api/";
         var baseApiUrl = "https://localhost:7263/api/";
@@ -253,8 +253,7 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="~/vendor/global/global.min.js"></script>
-    <script src="~/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="~/vendor/global/global.min.js"></script>  
     <script src="~/js/custom.min.js"></script>
     <script src="~/js/dlabnav-init.js"></script>
 
@@ -271,6 +270,9 @@
     <!-- Sweetalert -->
     <script src="~/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
     @*<script src="~/js/plugins-init/sweetalert.init.js"></script>*@
+
+@*    <script src="~/vendor/select2/js/select2.full.min.js"></script>
+    <script src="~/js/plugins-init/select2-init.js"></script>*@
 
     <!-- Only Page Scripts -->
     @RenderSection("endBodyArea",false);
