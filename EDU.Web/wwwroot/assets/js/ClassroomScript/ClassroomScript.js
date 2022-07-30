@@ -11,7 +11,7 @@
             {
                 data: "education",
                 "render": function (data, type, full, meta) {                    
-                    return '<p>' + full.education.name + '</p>';
+                    return  full.education.name;
                 }
             },
             { data: "createdOn" },
@@ -19,7 +19,7 @@
                 data: "process",
                 "render": function (data, type, full, meta) {
                     return `<a data-toggle="tooltip" data-placement="top" title="Düzenle" href="javascript:void(0);" onclick="editRow(` + full.id + `)" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                            <a data-toggle="tooltip" data-placement="top" title="Sil" href="javascript:void(0);" onclick="deleteRow(` + full.id + `)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
+                            <a data-toggle="tooltip" data-placement="top" title="Sil" href="javascript:void(0);" onclick="deleteRow(` + full.id + `,` + "'classroom'" + `,` + "'classroomDT'" + `)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
                             <a data-toggle="tooltip" data-placement="top" title="Öğrenci Ata" href="javascript:void(0);" onclick="includeStudent(` + full.id + `)" class="btn btn-sm btn-success"><i class="la la-user"></i></a>`;
                 }
             }
@@ -28,7 +28,6 @@
 }
 
 getAllClassroomDT();
-
 
 function includeStudent(id) {
     $("#includeStudentModal #includeStudentForm #hiddenClassroomId").val(id);
@@ -74,5 +73,50 @@ function fillStudentDropdown() {
 
         }
     })
-
 }
+
+function insertClassroomOpenModal() {
+    fillEducationDropdown();
+    $("#insertClassroomModal").modal('toggle');
+}
+
+function fillEducationDropdown() {
+    $("#educationId").empty();
+    $.ajax({
+        url: baseApiUrl + 'education',
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            debugger
+            for (var i = 0; i < data.data.length; i++) {
+                $("#educationId").append('<option value="' + data.data[i].id + '">' + data.data[i].name + '</option>');
+            }
+        },
+        error: function (error) {
+
+        }
+    })
+}
+
+$("#insertClassroomForm").submit(function () {
+    event.preventDefault();
+    let data = `{
+                   "name": "` + $("#insertClassroomModal #insertClassroomForm #val-classroomname").val() + `",
+                   "educationId":  ` + $("#insertClassroomModal #insertClassroomForm #educationId").val() + `
+                }`;
+    $.ajax({
+        url: baseApiUrl + "Classroom/AddClassroom",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: data,
+        success: function () {
+            $("#insertClassroomModal").modal('toggle');
+            $("#classroomDT").DataTable().ajax.reload();
+        },
+        error: function (error) {
+            swal.fire("Hata!", "Bir sorun ile karşılaşıldı!", error);
+        }
+    });
+});

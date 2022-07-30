@@ -17,7 +17,7 @@
                 data: "process",
                 "render": function (data, type, full, meta) {
                     return `<a data-toggle="tooltip" data-placement="top" title="Düzenle" href="javascript:void(0);" onclick="editRow(` + full.id + `)" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                            <a data-toggle="tooltip" data-placement="top" title="Sil" href="javascript:void(0);" onclick="deleteRow(` + full.id + `)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>`;
+                            <a data-toggle="tooltip" data-placement="top" title="Sil" href="javascript:void(0);" onclick="deleteRow(` + full.id + `,` + "'user'" + `,` + "'userDT'" + `)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>`;
                 }
             }
         ]
@@ -25,34 +25,6 @@
 }
 
 getAllUserDT();
-
-function deleteRow(id) {
-    swal({
-        title: "Silmek istediğinize emin misiniz?",
-        text: "Bu işlemi geri alamazsınız!",
-        type: "warning",
-        showCancelButton: !0,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Evet, Sil",
-        cancelButtonText: "Hayır, İptal Et",
-        closeOnConfirm: !1,
-        closeOnCancel: !1
-    }).then(function (result) {
-        if (result.value) {
-            $.ajax({
-                url: baseApiUrl + "user/" + id,
-                type: "DELETE",
-                success: function () {
-                    swal("Silindi !!", "Kayıt Silindi !!", "success")
-                    $("#userDT").DataTable().ajax.reload();
-                },
-                error: function () {
-                    swal.fire("Hata!", "Bir sorun ile karşılaşıldı!", error);
-                }
-            });
-        }
-    });
-}
 
 function editRow(id) {
     $.ajax({
@@ -104,7 +76,6 @@ $("#editUserForm").submit(function () {
 
     event.preventDefault();
 });
-
 
 $("#insertUserForm").submit(function () {
     debugger
