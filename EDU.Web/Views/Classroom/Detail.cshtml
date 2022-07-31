@@ -1,0 +1,50 @@
+﻿@model int
+@section endBodyArea{
+<script src="~/assets/js/ClassroomScript/ClassroomScript.js" type="text/javascript"> </script>
+<script>
+    GetActivitiesByClassroomId(@Model);
+</script>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Sınıf Kartı</h2>
+            </div>
+            <div class="card-body pb-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex px-0 justify-content-between">
+                        <strong>Sınıf Adı</strong>
+                        <span class="mb-0">CHS</span>
+                    </li>
+                    <li class="list-group-item d-flex px-0 justify-content-between">
+                        <strong>Eğitmen</strong>
+                        <span class="mb-0">Gürkan Sözdemir</span>
+                    </li>
+                    <li class="list-group-item d-flex px-0 justify-content-between">
+                        <strong>Eğitim</strong>
+                        <span class="mb-0">.Net Core</span>
+                    </li>
+                    <li class="list-group-item d-flex px-0 justify-content-between">
+                        <strong>Başlangıç Tarihi</strong>
+                        <span class="mb-0">07 August 2021</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer pt-0 pb-0 text-center">
+                <div class="row">
+                    <div class="col-6 pt-3 pb-3 border-right">
+                        <h3 class="mb-1 text-primary">12</h3>
+                        <span>Öğrenci</span>
+                    </div>
+                    <div class="col-6 pt-3 pb-3 border-right">
+                        <h3 class="mb-1 text-primary">23</h3>
+                        <span>Aktivite</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -10,8 +10,8 @@
             { data: "name" },
             {
                 data: "education",
-                "render": function (data, type, full, meta) {                    
-                    return  full.education.name;
+                "render": function (data, type, full, meta) {
+                    return full.education.name;
                 }
             },
             { data: "createdOn" },
@@ -20,7 +20,9 @@
                 "render": function (data, type, full, meta) {
                     return `<a data-toggle="tooltip" data-placement="top" title="Düzenle" href="javascript:void(0);" onclick="editRow(` + full.id + `)" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
                             <a data-toggle="tooltip" data-placement="top" title="Sil" href="javascript:void(0);" onclick="deleteRow(` + full.id + `,` + "'classroom'" + `,` + "'classroomDT'" + `)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
-                            <a data-toggle="tooltip" data-placement="top" title="Öğrenci Ata" href="javascript:void(0);" onclick="includeStudent(` + full.id + `)" class="btn btn-sm btn-success"><i class="la la-user"></i></a>`;
+                            <a data-toggle="tooltip" data-placement="top" title="Öğrenci Ata" href="javascript:void(0);" onclick="includeStudent(` + full.id + `)" class="btn btn-sm btn-success"><i class="la la-user"></i></a>
+                            <a data-toggle="tooltip" data-placement="top" title="Öğrencileri Göster" href="javascript:void(0);" onclick="showStudents(` + full.id + `)" class="btn btn-sm btn-warning"><i class="la la-user"></i></a>
+                            <a data-toggle="tooltip" data-placement="top" title="Sınıfa Git" href="/Classroom/Detail/` + full.id + `" class="btn btn-sm btn-warning"><i class="la la-user"></i></a>`;
                 }
             }
         ]
@@ -120,3 +122,33 @@ $("#insertClassroomForm").submit(function () {
         }
     });
 });
+
+function showStudents(id) {
+    $("#showStudentModal").modal('toggle');
+    $("#studentDT").DataTable({
+        ajax: {
+            url: baseApiUrl + "user/getStudentsByClassroomId/" + id,
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        },
+        columns: [
+            { data: "userName" },
+            { data: "firstName" },
+            { data: "lastName" },
+            { data: "eMail" },
+            { data: "password" },
+            { data: "createdOn" },
+            {
+                data: "process",
+                "render": function (data, type, full, meta) {
+                    return `<a data-toggle="tooltip" data-placement="top" title="Sınıftan Çıkar" href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>`;
+                }
+            }
+        ]
+    });
+}
+
+function GetActivitiesByClassroomId(id) {
+    debugger
+}
