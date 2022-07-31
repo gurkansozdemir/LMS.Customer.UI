@@ -149,6 +149,57 @@ function showStudents(id) {
     });
 }
 
-function GetActivitiesByClassroomId(id) {
+function GetDetailByClassroomId(id) {
     debugger
+    $.ajax({
+        url: baseApiUrl + "Classroom/GetDetailById/" + id,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            debugger
+            $("#classroomName").text(data.data.name);
+            $("#teacherName").text(data.data.teacherName);
+            $("#educationName").text(data.data.educationName);
+            $("#createdOn").text(data.data.createdOn);
+            $("#studentCount").text(data.data.studentCount);
+            $("#activityCount").text(data.data.activityCount);
+        },
+        error: function (error) {
+            swal.fire("Hata!", "Bir sorun ile karşılaşıldı!", error);
+        }
+    });
 }
+
+function GetActivitiesByClassroomId(id) {
+    var accordionHtml = "";
+    $.ajax({
+        url: baseApiUrl + "Activity/GetByClassroomId/" + id,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            debugger
+            for (let i = 0; i < data.data.length; i++) {
+                accordionHtml += `<div class="accordion__item">
+                                    <div class="accordion__header" data-toggle="collapse" data-target="#accordion` + data.data[i].id + `">
+                                        <span class="accordion__header--text">` + data.data[i].date + `</span>
+                                        <span class="accordion__header--indicator"></span>
+                                    </div>
+                                    <div id="accordion` + data.data[i].id + `" class="collapse accordion__body" data-parent="#activityListAccordion">
+                                        <div class="accordion__body--text">
+                                            ` + data.data[i].description + `
+                                        </div>
+                                    </div>
+                                </div>`;
+            }
+            $("#activityListAccordion").append(accordionHtml);
+        },
+        error: function (error) {
+            swal.fire("Hata!", "Bir sorun ile karşılaşıldı!", error);
+        }
+    });
+}
+
+
+
