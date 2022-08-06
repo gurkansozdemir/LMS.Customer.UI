@@ -183,12 +183,13 @@ function GetActivitiesByClassroomId(id) {
             debugger
             for (let i = (data.data.length - 1); i >= 0; i--) {
                 accordionHtml += `<div class="accordion__item">
-                                    <div class="accordion__header" data-toggle="collapse" data-target="#accordion` + data.data[i].id + `">
+                                    <div class="accordion__header" data-toggle="collapse" data-target="#accordion` + data.data[i].id + `">                                  
                                         <span class="accordion__header--text">` + data.data[i].date + `</span>
                                         <span class="accordion__header--indicator"></span>
                                     </div>
                                     <div id="accordion` + data.data[i].id + `" class="collapse accordion__body" data-parent="#activityListAccordion">
                                         <div class="accordion__body--text">
+                                            <button type="button" class="btn btn btn-outline-primary" onclick="showInspection(` + data.data[i].id + `,` + id + `)" style="margin-right: 20px;">Yoklama Al</button>
                                             ` + data.data[i].description + `
                                         </div>
                                     </div>
@@ -227,5 +228,34 @@ $("#insertActivityForm").submit(function () {
 });
 
 
+function showInspection(activityId, classroomId) {
+    debugger
+    $("#showInspectionModal #insertInspectionForm #activityId").val(activityId);
+    $("#studentList").empty();
+    var htmlContent = "";
+    $.ajax({
+        url: baseApiUrl + 'user/getStudentsByClassroomId/' + classroomId,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            debugger
+            for (var i = 0; i < data.data.length; i++) {
+                htmlContent += `<li class="list-group-item d-flex justify-content-between align-items-center">` + data.data[i].firstName + ` ` + data.data[i].lastName +
+                        `<div class="form-check mb-2">
+                              <input type="checkbox" class="form-check-input">
+                         </div>
+                    </li>`;
+            }
+            $("#studentList").append(htmlContent);
+        },
+        error: function (error) {
 
+        }
+    })
+
+
+
+    $("#showInspectionModal").modal("toggle");
+}
 
