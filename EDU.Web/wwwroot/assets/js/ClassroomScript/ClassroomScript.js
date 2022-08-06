@@ -227,10 +227,9 @@ $("#insertActivityForm").submit(function () {
     });
 });
 
-
 function showInspection(activityId, classroomId) {
     debugger
-    $("#showInspectionModal #insertInspectionForm #activityId").val(activityId);
+    /*$("#showInspectionModal #insertInspectionForm #activityId").val(activityId);*/
     $("#studentList").empty();
     var htmlContent = "";
     $.ajax({
@@ -242,8 +241,8 @@ function showInspection(activityId, classroomId) {
             debugger
             for (var i = 0; i < data.data.length; i++) {
                 htmlContent += `<li class="list-group-item d-flex justify-content-between align-items-center">` + data.data[i].firstName + ` ` + data.data[i].lastName +
-                        `<div class="form-check mb-2">
-                              <input type="checkbox" class="form-check-input">
+                    `<div class="form-check mb-2">
+                              <input type="checkbox" data-id="` + activityId + `" value="` + data.data[i].id + `" class="form-check-input">
                          </div>
                     </li>`;
             }
@@ -254,8 +253,23 @@ function showInspection(activityId, classroomId) {
         }
     })
 
-
-
     $("#showInspectionModal").modal("toggle");
+}
+
+function saveInspections() {
+    var data = "[";
+
+    $('.form-check-input').each(function () {
+        debugger
+        data += `{
+                   "activityId": ` + $(this).data("id") + `,
+                   "isCome": ` + $(this).is(":checked") + `,
+                   "studentId":`+ $(this).val() +`
+                },`; 
+    });
+
+    data += "]";
+
+    console.log(data);
 }
 

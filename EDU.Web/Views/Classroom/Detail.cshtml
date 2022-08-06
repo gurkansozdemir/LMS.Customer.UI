@@ -123,25 +123,21 @@
                 <h5 class="modal-title">Yoklama Al</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
-            <form class="form-valide" id="insertInspectionForm">
-                <div class="modal-body">
-                    <div class="form-validation">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <input type="hidden" value="" id="activityId" />
-                                <div class="basic-list-group">
-                                    <ul class="list-group" id="studentList">
-
-                                    </ul>
-                                </div>
+            <div class="modal-body">
+                <div class="form-validation">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="basic-list-group">
+                                <ul class="list-group" id="studentList">
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Ekle</button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="saveInspections()" class="btn btn-primary">Ekle</button>
+            </div>
         </div>
     </div>
 </div>
