@@ -172,6 +172,7 @@ function GetDetailByClassroomId(id) {
 }
 
 function GetActivitiesByClassroomId(id) {
+    $("#activityListAccordion").empty();
     var accordionHtml = "";
     $.ajax({
         url: baseApiUrl + "Activity/GetByClassroomId/" + id,
@@ -180,7 +181,7 @@ function GetActivitiesByClassroomId(id) {
         dataType: "json",
         success: function (data) {
             debugger
-            for (let i = 0; i < data.data.length; i++) {
+            for (let i = (data.data.length - 1); i >= 0; i--) {
                 accordionHtml += `<div class="accordion__item">
                                     <div class="accordion__header" data-toggle="collapse" data-target="#accordion` + data.data[i].id + `">
                                         <span class="accordion__header--text">` + data.data[i].date + `</span>
@@ -200,6 +201,31 @@ function GetActivitiesByClassroomId(id) {
         }
     });
 }
+
+$("#insertActivityForm").submit(function () {
+    event.preventDefault();
+    var classroomId = $("#insertActivityModal #insertActivityForm #classroomId").val();
+    let data = `{
+                   "date": "` + $("#insertActivityModal #insertActivityForm #val-activityDate").val() + `",
+                   "description": "` + $("#insertActivityModal #insertActivityForm #val-activityContent").val() + `",
+                   "classroomId":`+ classroomId + `
+                }`;
+    $.ajax({
+        url: baseApiUrl + "activity",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: data,
+        success: function () {
+            $("#insertActivityModal").modal('toggle');
+            GetActivitiesByClassroomId(classroomId);
+        },
+        error: function (error) {
+            swal.fire("Hata!", "Bir sorun ile karşılaşıldı!", error);
+        }
+    });
+});
+
 
 
 
