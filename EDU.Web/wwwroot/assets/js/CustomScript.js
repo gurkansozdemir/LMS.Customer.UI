@@ -16,7 +16,7 @@
                 url: baseApiUrl + endpoint + "/" + id,
                 type: "DELETE",
                 success: function () {
-                    swal("Silindi !!", "Kayıt Silindi !!", "success")
+                    swal("Silindi !!", "Kayıt Silindi !!", "success");
                     $("#" + datatable).DataTable().ajax.reload();
                 },
                 error: function (error) {

@@ -189,7 +189,7 @@ function GetActivitiesByClassroomId(id) {
                                     </div>
                                     <div id="accordion` + data.data[i].id + `" class="collapse accordion__body" data-parent="#activityListAccordion">
                                         <div class="accordion__body--text">
-                                            <button type="button" class="btn btn btn-outline-primary" onclick="showInspection(` + data.data[i].id + `,` + id + `)" style="margin-right: 20px;">Yoklama Al</button>
+                                            <button type="button" class="btn btn btn-outline-primary" onclick="showInspection(` + data.data[i].id + `)" style="margin-right: 20px;">Yoklama Al</button>
                                             ` + data.data[i].description + `
                                         </div>
                                     </div>
@@ -227,24 +227,26 @@ $("#insertActivityForm").submit(function () {
     });
 });
 
-function showInspection(activityId, classroomId) {
-    debugger
-    /*$("#showInspectionModal #insertInspectionForm #activityId").val(activityId);*/
+function showInspection(activityId) {
     $("#studentList").empty();
     var htmlContent = "";
     $.ajax({
-        url: baseApiUrl + 'user/getStudentsByClassroomId/' + classroomId,
+        url: baseApiUrl + 'inspection/' + activityId,
         type: "GET",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
             debugger
             for (var i = 0; i < data.data.length; i++) {
-                htmlContent += `<li class="list-group-item d-flex justify-content-between align-items-center">` + data.data[i].firstName + ` ` + data.data[i].lastName +
-                    `<div class="form-check mb-2">
-                              <input type="checkbox" data-id="` + activityId + `" value="` + data.data[i].id + `" class="form-check-input">
-                         </div>
-                    </li>`;
+                htmlContent += `<li class="list-group-item d-flex justify-content-between align-items-center">` + data.data[i].student.firstName + ` ` + data.data[i].student.lastName +
+                    `<div class="form-check mb-2">`;
+                if (data.data[i].isCome) {
+                    htmlContent += `<input type="checkbox" checked data-id="` + activityId + `" value="` + data.data[i].student.id + `" class="form-check-input">`;
+                }
+                else {
+                    htmlContent += `<input type="checkbox" data-id="` + activityId + `" value="` + data.data[i].student.id + `" class="form-check-input">`;
+                }
+                htmlContent += `</div></li>`;
             }
             $("#studentList").append(htmlContent);
         },
@@ -257,19 +259,30 @@ function showInspection(activityId, classroomId) {
 }
 
 function saveInspections() {
-    var data = "[";
-
+    const objectData = [];
     $('.form-check-input').each(function () {
-        debugger
-        data += `{
-                   "activityId": ` + $(this).data("id") + `,
-                   "isCome": ` + $(this).is(":checked") + `,
-                   "studentId":`+ $(this).val() +`
-                },`; 
+        const dataItem = {
+            activityId: $(this).data("id"),
+            isCome: $(this).is(":checked"),
+            studentId: parseInt($(this).val())
+        };
+        objectData.push(dataItem);
     });
+    var jsonData = JSON.stringify(objectData);
 
-    data += "]";
-
-    console.log(data);
+    $.ajax({
+        url: baseApiUrl + "inspection",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: jsonData,
+        success: function () {
+            $("#showInspectionModal").modal("toggle");
+            swal("Kaydedildi !!", "Yoklama kaydedildi !!", "success")
+        },
+        error: function (error) {
+            swal.fire("Hata!", "Bir sorun ile karşılaşıldı!", error);
+        }
+    });
 }
 
