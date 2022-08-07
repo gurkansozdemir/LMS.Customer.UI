@@ -239,14 +239,10 @@ function showInspection(activityId) {
             debugger
             for (var i = 0; i < data.data.length; i++) {
                 htmlContent += `<li class="list-group-item d-flex justify-content-between align-items-center">` + data.data[i].student.firstName + ` ` + data.data[i].student.lastName +
-                    `<div class="form-check mb-2">`;
-                if (data.data[i].isCome) {
-                    htmlContent += `<input type="checkbox" checked data-id="` + activityId + `" value="` + data.data[i].student.id + `" class="form-check-input">`;
-                }
-                else {
-                    htmlContent += `<input type="checkbox" data-id="` + activityId + `" value="` + data.data[i].student.id + `" class="form-check-input">`;
-                }
-                htmlContent += `</div></li>`;
+                                    `<div class="form-check mb-2">
+                                        <input type="checkbox"` + (data.data[i].isCome ? "checked" : "") + ` data-inspectionId="` + data.data[i].id + `" data-activityId="` + activityId + `" value="` + data.data[i].student.id + `" class="form-check-input">
+                                    </div>
+                                </li>`;
             }
             $("#studentList").append(htmlContent);
         },
@@ -262,7 +258,8 @@ function saveInspections() {
     const objectData = [];
     $('.form-check-input').each(function () {
         const dataItem = {
-            activityId: $(this).data("id"),
+            id: $(this).attr("data-inspectionId"),
+            activityId: $(this).attr("data-activityId"),
             isCome: $(this).is(":checked"),
             studentId: parseInt($(this).val())
         };
@@ -271,7 +268,7 @@ function saveInspections() {
     var jsonData = JSON.stringify(objectData);
 
     $.ajax({
-        url: baseApiUrl + "inspection",
+        url: baseApiUrl + "inspection/createAndUpdate",
         type: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
