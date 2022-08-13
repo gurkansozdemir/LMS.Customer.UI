@@ -1,4 +1,6 @@
-﻿function getAllClassroomDT() {
+﻿var educationId = 0;
+
+function getAllClassroomDT() {
     $("#classroomDT").DataTable({
         ajax: {
             url: baseApiUrl + "classroom/GetAllWithEducation",
@@ -164,6 +166,7 @@ function GetDetailByClassroomId(id) {
             $("#createdOn").text(data.data.createdOn);
             $("#studentCount").text(data.data.studentCount);
             $("#activityCount").text(data.data.activityCount);
+            educationId = data.data.educationId;
         },
         error: function (error) {
             swal.fire("Hata!", "Bir sorun ile karşılaşıldı!", error);
@@ -283,3 +286,26 @@ function saveInspections() {
     });
 }
 
+function fillLessonDropdown(id) {
+    $("#lessonId").empty();
+    $.ajax({
+        url: baseApiUrl + 'lesson/getByEducationId/' + id,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            debugger
+            for (var i = 0; i < data.data.length; i++) {
+                $("#lessonId").append('<option value="' + data.data[i].id + '">' + data.data[i].name + '</option>');
+            }
+        },
+        error: function (error) {
+
+        }
+    })
+}
+
+function showInsertActivityModal() {
+    fillLessonDropdown(educationId);
+    $("#insertActivityModal").modal('toggle');
+}

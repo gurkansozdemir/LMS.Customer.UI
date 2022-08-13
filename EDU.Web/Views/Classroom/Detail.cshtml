@@ -57,7 +57,7 @@
                     <div class="col-md-7">
                     </div>
                     <div class="col-md-2" style="left: 5.3%;">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#insertActivityModal">Aktivite Gir</button>
+                        <button class="btn btn-primary" onclick="showInsertActivityModal();">Aktivite Gir</button>
                     </div>
                 </div>
             </div>
@@ -85,24 +85,34 @@
                             <div class="col-xl-12">
                                 <input type="hidden" value="@Model" id="classroomId" />
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-firstname">
+                                    <label class="col-lg-3 col-form-label" for="studentDropDown">
+                                        Ders Seçiniz:
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-9">
+                                        <select class="form-control" id="lessonId" name="lessonId" required>
+                                            <option value="" selected disabled>Ders Seçiniz..</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label" for="val-firstname">
                                         Tarih:
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-9">
                                         <input type="datetime-local" class="form-control" id="val-activityDate" name="val-activityDate">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-firstname">
+                                    <label class="col-lg-3 col-form-label" for="val-firstname">
                                         Ders İçeriği:
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-9">
                                         <textarea type="text" class="form-control" id="val-activityContent" name="val-activityContent" rows="3"> </textarea>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
