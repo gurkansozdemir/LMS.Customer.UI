@@ -212,7 +212,8 @@ $("#insertActivityForm").submit(function () {
     let data = `{
                    "date": "` + $("#insertActivityModal #insertActivityForm #val-activityDate").val() + `",
                    "description": "` + $("#insertActivityModal #insertActivityForm #val-activityContent").val() + `",
-                   "classroomId":`+ classroomId + `
+                   "classroomId":`+ classroomId + `,
+                   "lessonId":` + $("#insertActivityModal #insertActivityForm #lessonId").val() + `
                 }`;
     $.ajax({
         url: baseApiUrl + "activity",
