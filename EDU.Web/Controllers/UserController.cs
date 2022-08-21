@@ -7,8 +7,18 @@ namespace EDU.Web.Controllers
     public class UserController : Controller
     {
         public IActionResult All()
-        {         
+        {
             return View();
         }
-    }
+
+        public IActionResult AllStudents()
+        {
+            return View();
+        }
+
+        public IActionResult AllTeachers()
+        { 
+            return View();
+        }
+}
 }

@@ -1,0 +1,26 @@
+﻿@section endBodyArea{
+    <script src="~/assets/js/EducationScript/EducationScript.js" type="text/javascript"> </script>
+    <script src="~/assets/js/CustomScript.js" type="text/javascript"> </script>
+}
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Tüm Eğitimler </h4>
+        <button type="button" class="btn btn-primary" onclick="insertEducationOpenModal()">+ Yeni Eğitim</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="educationDT" class="display dataTable" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Eğitim Adı</th>
+                        <th>Eğitim Saati</th>
+                        <th>Sertifika</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>

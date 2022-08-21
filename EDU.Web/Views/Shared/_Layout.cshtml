@@ -205,6 +205,8 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/User/All">Tüm Kullanıcılar</a></li>
+                            <li><a href="/User/AllStudents">Tüm Öğrenciler</a></li>
+                            <li><a href="/User/AllTeachers">Tüm Öğretmenler</a></li>
                         </ul>
                     </li>
                     <li class="mega-menu mega-menu-lg">
@@ -214,6 +216,24 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/Classroom/All">Tüm Sınıflar</a></li>
+                        </ul>
+                    </li>
+                    <li class="mega-menu mega-menu-lg">
+                        <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                            <svg id="icon-home" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            <span class="nav-text">Eğitimler</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/Education/All">Tüm Eğitimler</a></li>
+                        </ul>
+                    </li>
+                    <li class="mega-menu mega-menu-lg">
+                        <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                            <svg id="icon-home" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            <span class="nav-text">Dersler</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/Lesson/All">Tüm Dersler</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -253,7 +273,7 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="~/vendor/global/global.min.js"></script>  
+    <script src="~/vendor/global/global.min.js"></script>
     <script src="~/js/custom.min.js"></script>
     <script src="~/js/dlabnav-init.js"></script>
 
@@ -271,8 +291,8 @@
     <script src="~/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
     @*<script src="~/js/plugins-init/sweetalert.init.js"></script>*@
 
-@*    <script src="~/vendor/select2/js/select2.full.min.js"></script>
-    <script src="~/js/plugins-init/select2-init.js"></script>*@
+    @*    <script src="~/vendor/select2/js/select2.full.min.js"></script>
+        <script src="~/js/plugins-init/select2-init.js"></script>*@
 
     <!-- Only Page Scripts -->
     @RenderSection("endBodyArea",false);

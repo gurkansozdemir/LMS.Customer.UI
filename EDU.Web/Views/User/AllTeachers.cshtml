@@ -1,0 +1,29 @@
+﻿@section endBodyArea{
+    <script src="~/assets/js/UserScript/UserScript.js" type="text/javascript"> </script>
+    <script src="~/assets/js/CustomScript.js" type="text/javascript"> </script>
+    <script>getAllTeacherDT();</script>
+}
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Tüm Öğretmenler </h4>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertTeacherModal">+ Yeni Öğretmen</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="teacherDT" class="display dataTable" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Kullanıcı Adı</th>
+                        <th>Adı</th>
+                        <th>Soyadı</th>
+                        <th>e-Posta</th>
+                        <th>Parola</th>
+                        <th>Üyelik Tarihi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
