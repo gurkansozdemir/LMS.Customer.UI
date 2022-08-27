@@ -13,6 +13,11 @@ namespace EDU.Web.Controllers
             return View();
         }
 
+        public IActionResult MyClassrooms()
+        {
+            return View();
+        }
+
         public IActionResult Detail(int id)
         {
             return View(id);

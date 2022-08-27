@@ -310,3 +310,7 @@ function showInsertActivityModal() {
     fillLessonDropdown(educationId);
     $("#insertActivityModal").modal('toggle');
 }
+
+function getClassroomByTeacherId() {
+
+}
