@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EDU.Web.Controllers
 {
-    //[SessionFilter]
+    [SessionFilter]
     [Authorize(Roles = "Teacher,Supervisor")]
     public class ClassroomController : Controller
     {

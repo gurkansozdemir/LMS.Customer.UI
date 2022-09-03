@@ -243,7 +243,7 @@ function showInspection(activityId) {
             debugger
             for (var i = 0; i < data.data.length; i++) {
                 htmlContent += `<li class="list-group-item d-flex justify-content-between align-items-center">` + data.data[i].student.firstName + ` ` + data.data[i].student.lastName +
-                                    `<div class="form-check mb-2">
+                    `<div class="form-check mb-2">
                                         <input type="checkbox"` + (data.data[i].isCome ? "checked" : "") + ` data-inspectionId="` + data.data[i].id + `" data-activityId="` + activityId + `" value="` + data.data[i].student.id + `" class="form-check-input">
                                     </div>
                                 </li>`;
@@ -272,7 +272,7 @@ function saveInspections() {
     var jsonData = JSON.stringify(objectData);
 
     $.ajax({
-        url: baseApiUrl + "inspection/createAndUpdate",
+        url: baseApiUrl + "inspection/save",
         type: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -312,5 +312,52 @@ function showInsertActivityModal() {
 }
 
 function getClassroomByTeacherId() {
+    debugger
+    var htmlContent = "";
+    $("#teachersClassrooms").empty();
+    $.ajax({
+        url: baseApiUrl + "Classroom/GetByTeacherId/" + sessionUserId,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            for (var i = 0; i < data.data.length; i++) {
+                htmlContent += `<div class="col-xl-3 col-xxl-4 col-lg-4 col-md-6 col-sm-6">
+                                        <div class="card">
+                                            <img class="img-fluid" src="https://picsum.photos/200/200" alt="">
+                                            <div class="card-body">
+                                                <h4>` + data.data[i].name + `</h4>
+                                                <ul class="list-group mb-3 list-group-flush">
+                                                    <li class="list-group-item px-0 border-top-0 d-flex justify-content-between">
+                                                        <span class="mb-0 text-muted">` + data.data[i].createdOn + `</span>
+                                                    </li>
+                                                    <li class="list-group-item px-0 d-flex justify-content-between">
+                                                        <span class="mb-0">Eğitim Saati :</span><strong>` + data.data[i].educationHour + ` Saat</strong>
+                                                    </li>
+                                                    <li class="list-group-item px-0 d-flex justify-content-between">
+                                                        <span class="mb-0">Eğitim :</span><strong>` + data.data[i].educationName + `</strong>
+                                                    </li>
+                                                    <li class="list-group-item px-0 d-flex justify-content-between">
+                                                        <span class="mb-0">Eğitmen :</span><strong>` + data.data[i].teacherName + `</strong>
+                                                    </li>
+                                                    <li class="list-group-item px-0 d-flex justify-content-between">
+                                                        <span><i class="fa fa-graduation-cap text-primary mr-2"></i>Öğrenci</span><strong>` + data.data[i].studentCount + `</strong>
+                                                    </li>
+                                                    <li class="list-group-item px-0 d-flex justify-content-between">
+                                                        <span><i class="fa fa-book text-primary mr-2"></i>Yapılan Ders</span><strong>` + data.data[i].activityCount + `</strong>
+                                                    </li>
+                                                </ul>
+                                                <a href="/Classroom/Detail/` + data.data[i].educationId + `" class="btn btn-primary">Sınıfa Git</a>
+                                            </div>
+                                        </div>
+                                    </div>`;
+            }
+            $("#teachersClassrooms").append(htmlContent);
+        },
+        error: function () {
 
+        }
+    });
 }
+
+

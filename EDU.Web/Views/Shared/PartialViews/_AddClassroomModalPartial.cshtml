@@ -1,0 +1,44 @@
+﻿<!-- Insert Classroom Modal -->
+<div id="insertClassroomModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yeni Sınıf Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <form class="form-valide" id="insertClassroomForm">
+                <div class="modal-body">
+                    <div class="form-validation">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="val-firstname">
+                                        Ad
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="val-classroomname" name="val-classroomname">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="studentDropDown">
+                                        Eğitim Seçiniz:
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <select class="form-control" id="educationId" name="educationId" required>
+                                            <option value="" selected disabled>Eğitim Seçiniz..</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Ekle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -18,5 +18,11 @@ namespace EDU.Web.Services
             var responseData = await response.Content.ReadFromJsonAsync<CustomResponseVM<UserVM>>();
             return responseData.Data;
         }
+
+        public async Task<List<MenuItemVM>> GetMenuItemAsync(int id)
+        {
+            var response = await _httpClient.GetFromJsonAsync<CustomResponseVM<List<MenuItemVM>>>("user/getMenuItemsByRoleId/" + id);
+            return response.Data;
+        }
     }
 }
